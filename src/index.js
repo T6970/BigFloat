@@ -1,21 +1,35 @@
-// BigFloat
+// BigSlash
 
-class bigFloat = {
+
+// Internal function
+// Highest common factor of two BigInts
+function hcf(a, b) {
+  var result = a
+  var d = b
+  while (d !== 0n) {
+    let temp = d;
+    d = result % d;
+    result = temp;
+  };
+  return result;
+};
+
+
+export class bigSlash {
   constructor(value) {
-    if ((value.math(/\./g) || []).length > 1) throw new SyntaxError("Numbers cannot have multiple decimal points!")
-
-    this.negative = value.startsWith("-"); // Check negative
-    this.mantissa = val.replace(/\./g, ""); // mantissa (significand)
-
-    let trailingZeros = 0;
-    const matchZeros = val.match(/0+$/);
-    if (matchZeros) trailingZeros = matchZeros[0].length;
-
-    // Exponent
-    if (val.includes(".")) {
-      this.exponent = val.indexOf(".") + trailingZeros;
+    if (value.split(".").length > 2) throw new SyntaxError("Numbers can't have multiple decimal point!");
+    
+    if (value.contains(".")) {
+    const den = 10n ** BigInt(value.split(".")[1].length);
     } else {
-      this.exponent = val.length;
-    }
-  }
+    const den = 1n
+    };
+    const num = BigInt(value.replace(/\./g, ""));
+    
+    let divide = hcf(num, den);
+    
+    this.numerator   = num / divide
+    this.denominator = den / divide
+  };
+}
 
