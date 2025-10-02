@@ -1,3 +1,4 @@
-# BigSlash
+# BigFraction
 
-JavaScript library for exact fractions and infinite precision floating points
+JavaScript library for exact fractions and arbitrary precision decimals
+
