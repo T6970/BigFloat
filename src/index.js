@@ -9,10 +9,14 @@ function hcf(a, b) {
   return result;
 };
 
+// Internal function
+// Least common multiple
 function lcm(a, b) {
     return (a * b) / hcf(a, b);
 }
 
+// Internet function
+// Least common denominator
 function lcd(denominators) {
     if (denominators.length === 0) throw new Error("No denominators!")
     return denominators.reduce((acc, curr) => lcm(acc, curr));
